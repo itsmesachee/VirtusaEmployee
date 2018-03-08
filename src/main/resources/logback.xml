@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		encoders are assigned the type
+		ch.qos.logback.classic.encoder.PatternLayoutEncoder
+		by default
+		<encoder>
+			<pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36}
+				- %msg%n
+			</pattern>
+		</encoder>
+	</appender>
+
+	<appender name="FILE" class="ch.qos.logback.core.FileAppender">
+		<!-- <param name="file" value="C:/Users/bsamitha/Documents/logs/mylogfile.log" 
+			/> -->
+		<file> C:/Users/bsamitha/Documents/logs/mylogfile.txt </file>
+		<encoder>
+			<pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36}
+				- %msg%n
+			</pattern>
+		</encoder>
+	</appender>
+
+	<appender name="ROLLING"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+
+		<!-- <layout class="LoggerLayoutSimple" /> -->
+		<!-- <param name="file" value="file.log" /> -->
+
+		<!-- <file> C:/Users/bsamitha/Documents/logs/logfile.log</file> -->
+
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+
+			<fileNamePattern>C:/Users/bsamitha/Documents/logs/logFile.%d{yyyy-MM-dd}.log
+			</fileNamePattern>
+			<maxHistory>30</maxHistory>
+			<totalSizeCap>3GB</totalSizeCap>
+
+		</rollingPolicy>
+		<encoder>
+			<pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n
+
+			</pattern>
+		</encoder>
+	</appender>
+
+	<logger name="org.hibernate.SQL" additivity="false">
+		<level value="TRACE" />
+		<appender-ref ref="ROLLING" />
+	</logger>
+
+	<logger name="org.hibernate.type.descriptor.sql" additivity="false">
+		<level value="TRACE" />
+		<appender-ref ref="ROLLING" />
+	</logger>
+
+	<logger name="org.springframework" level="TRACE" additivity="false">
+		<appender-ref ref="ROLLING" />
+	</logger>
+	
+	<root level="DEBUG">
+		<!-- <appender-ref ref="STDOUT" /> --> 
+		<!-- <appender-ref ref="FILE" /> -->
+		<appender-ref ref="ROLLING" />
+	</root>
+</configuration>
+
