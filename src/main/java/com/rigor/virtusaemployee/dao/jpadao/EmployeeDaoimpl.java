@@ -11,12 +11,15 @@ import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import com.rigor.virtusaemployee.dao.EmployeeDao;
 import com.rigor.virtusaemployee.dao.model.Employee;
 
-@Repository
+@Component
+@Qualifier("dao")
 public class EmployeeDaoimpl implements EmployeeDao {
 
 	private EntityManager entityManager;
@@ -83,5 +86,12 @@ public class EmployeeDaoimpl implements EmployeeDao {
 		entityManager.getTransaction().commit();
 
 	}
+
+	@Override
+	public String toString() {
+		return "EmployeeDaoimpl [entityManager=" + entityManager + ", emp=" + emp + "]";
+	}
+	
+	
 
 }

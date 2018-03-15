@@ -1,32 +1,29 @@
 
 package com.rigor.virtusaemployee.front.view;
 
-import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
 import java.util.logging.LogManager;
 
-import org.hibernate.jpa.boot.spi.Bootstrap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.annotation.ComponentScan;
 
 import com.rigor.virtusaemployee.front.controller.ViewController;
 import com.rigor.virtusaemployee.front.model.EmployeeModel;
 import com.rigor.virtusaemployee.service.InvaliInputException;
 import com.rigor.virtusaemployee.service.SystemErrorException;
-
-import ch.qos.logback.classic.Level;
-
+ 
 public class ViewEmployee {
-
+	
 	private static final Logger LOGGER = LoggerFactory.getLogger(ViewEmployee.class);
 
 	public static void main(String[] args) {
 		
 		LogManager.getLogManager().reset();
 		List<EmployeeModel> viewList;
+		@SuppressWarnings("resource")
 		Scanner input = new Scanner(System.in);
 		while (true) {
 			try {

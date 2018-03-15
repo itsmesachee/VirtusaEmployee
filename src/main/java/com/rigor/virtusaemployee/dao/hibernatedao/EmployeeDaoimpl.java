@@ -42,7 +42,7 @@ public class EmployeeDaoimpl implements EmployeeDao {
 	}
 
 	public List<Employee> getAllEmployee() throws SQLException {
-
+		
 		sessionfactory = buildSession();
 		Session session = sessionfactory.openSession();
 		Transaction transaction = session.beginTransaction();

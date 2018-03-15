@@ -4,6 +4,10 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.stereotype.Controller;
+
 import com.rigor.virtusaemployee.dao.model.Employee;
 import com.rigor.virtusaemployee.front.model.EmployeeModel;
 import com.rigor.virtusaemployee.service.EmployeeService;
@@ -16,27 +20,36 @@ public class ViewController {
 		throw new IllegalStateException();
 	}
 
+	
 	public static void newEmployee(int eid, String name, String nic, String salary, String currentPro)
 			throws SystemErrorException {
-
-		EmployeeService.createEmployee(eid, name, nic, salary, currentPro);
+		
+		ApplicationContext context = new ClassPathXmlApplicationContext("EmpConfig.xml");
+		EmployeeService employeeService = (EmployeeService) context.getBean("employeeService");
+		employeeService.createEmployee(eid, name, nic, salary, currentPro);
 	}
 	
 	public static EmployeeModel getEmployee(int id) throws SystemErrorException, InvaliInputException {
 
-		Employee emp = EmployeeService.getEmployee(id);
+		ApplicationContext context = new ClassPathXmlApplicationContext("EmpConfig.xml");
+		EmployeeService employeeService = (EmployeeService) context.getBean("employeeService");
+		Employee emp = employeeService.getEmployee(id);
 		return new EmployeeModel(emp.getName(), emp.getNic(), emp.getCurrentproject());
 	}
 	
 	public static int getEmployee(String name) throws SystemErrorException, InvaliInputException {
 
-		Employee emp = EmployeeService.getEmployee(name);
+		ApplicationContext context = new ClassPathXmlApplicationContext("EmpConfig.xml");
+		EmployeeService employeeService = (EmployeeService) context.getBean("employeeService");
+		Employee emp = employeeService.getEmployee(name);
 		return emp.getEid();
 	}
 
 	public static List<EmployeeModel> getAllEmployee() throws SystemErrorException {
 
-		List<Employee> empList = EmployeeService.getEmployee();
+		ApplicationContext context = new ClassPathXmlApplicationContext("EmpConfig.xml");
+		EmployeeService employeeService = (EmployeeService) context.getBean("employeeService");
+		List<Employee> empList = employeeService.getEmployee();
 		List<EmployeeModel> empViewList = new ArrayList<EmployeeModel>();
 		Iterator<Employee> itr = empList.iterator();
 		while (itr.hasNext()) {
@@ -49,12 +62,15 @@ public class ViewController {
 
 	public static void deleteEmployee(int id) throws SystemErrorException, InvaliInputException {
 
-		EmployeeService.deleteEmployee(id);
-		
+		ApplicationContext context = new ClassPathXmlApplicationContext("EmpConfig.xml");
+		EmployeeService employeeService = (EmployeeService) context.getBean("employeeService");
+		employeeService.deleteEmployee(id);		
 	}
 
 	public static void updateEmployee(int id, String currentPro) throws SystemErrorException {
 		
-		EmployeeService.updateEmployee(id, currentPro);
+		ApplicationContext context = new ClassPathXmlApplicationContext("EmpConfig.xml");
+		EmployeeService employeeService = (EmployeeService) context.getBean("employeeService");
+		employeeService.updateEmployee(id, currentPro);
 	}
 }
