@@ -1,21 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
 	http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
 	http://www.springframework.org/schema/context
 	http://www.springframework.org/schema/context/spring-context-2.5.xsd">
 
-	<!-- <bean id="dao" class="com.rigor.virtusaemployee.dao.EmployeeDaoimpl"></bean> --> 
-	<!-- <bean id="dao" class="com.rigor.virtusaemployee.dao.hibernatedao.EmployeeDaoimpl"></bean> -->
-	<!-- <bean id="dao" class="com.rigor.virtusaemployee.dao.jpadao.EmployeeDaoimpl"></bean> -->  
+	<!-- <context:component-scan base-package="com.rigor.virtusaemployee" /> -->
+
+<!-- 	<bean id="dao" class="com.rigor.virtusaemployee.dao.jpadao.EmployeeDaoimpl"></bean>
+	
+	<bean id="employeeService" class="com.rigor.virtusaemployee.service.EmployeeService">
+		<property name="dao" ref="dao"></property>
+
+	</bean> -->
 	
 	
-	 <context:component-scan base-package="com.rigor.virtusaemployee" /> 
-	
-	<!--  <context:annotation-config/>
-	<bean id = "employeeService" class="com.rigor.virtusaemployee.service.EmployeeService"/>   -->
-	
+<!-- 	<bean id="dao" class="com.rigor.virtusaemployee.dao.jpadao.EmployeeDaoimpl"></bean>
+	<bean id="employeeService" class="com.rigor.virtusaemployee.service.EmployeeService" autowire="byName"></bean>
+	 -->
+
 </beans>

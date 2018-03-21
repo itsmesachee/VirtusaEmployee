@@ -18,8 +18,6 @@ import org.springframework.stereotype.Repository;
 import com.rigor.virtusaemployee.dao.EmployeeDao;
 import com.rigor.virtusaemployee.dao.model.Employee;
 
-@Component
-@Qualifier("dao")
 public class EmployeeDaoimpl implements EmployeeDao {
 
 	private EntityManager entityManager;
